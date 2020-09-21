@@ -1,0 +1,15 @@
+.game {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 90%;
+    font-size: 18px;
+    color: white;
+    background: rgb(0, 212, 255);
+background: linear-gradient(180deg, rgb(115, 235, 155) 0%, rgb(75, 219, 188) 61%, rgb(156, 236, 65) 100%);
+  }
+  
+  .game-info {
+    margin-left: 20px;
+  }

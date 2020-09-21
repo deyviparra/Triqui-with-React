@@ -1,38 +1,100 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+html {
+  height: 100%; }
+
+body {
+  font: 14px "Century Gothic", Futura, sans-serif;
+  height: 100%; }
+
+#root {
+  height: 100%; }
+
 .App {
-  text-align: center;
-}
+  height: 100%; }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+nav {
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #905ce4; }
+  nav h1 {
+    color: white;
+    padding-right: 20px; }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+.game {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 90%;
+  font-size: 18px;
+  color: white;
+  background: #00d4ff;
+  background: linear-gradient(180deg, #73eb9b 0%, #4bdbbc 61%, #9cec41 100%); }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.game-info {
+  margin-left: 20px; }
+
+.players {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px; }
+  .players label {
+    margin-top: 10px; }
+  .players input {
+    padding: 5px; }
+
+.board-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center; }
+
+.status {
+  text-align: center; }
+
+.board {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: center; }
+
+.btn-restart {
+  background-color: #905ce4;
+  margin: 20px;
+  width: 80%;
+  height: 80px;
   color: white;
-}
+  font-size: 24px; }
 
-.App-link {
-  color: #61dafb;
-}
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table; }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+.status {
+  margin-bottom: 10px; }
+
+.square {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 70px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 70px; }
+
+.square:focus {
+  outline: none;
+  background: #ddd; }
