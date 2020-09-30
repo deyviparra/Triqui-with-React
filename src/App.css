@@ -31,10 +31,15 @@ nav {
   align-items: center;
   justify-content: center;
   height: 90%;
+  box-sizing: border-box;
   font-size: 18px;
   color: white;
+  overflow: hidden;
   background: #00d4ff;
   background: linear-gradient(180deg, #73eb9b 0%, #4bdbbc 61%, #9cec41 100%); }
+  .game .game-board {
+    width: 100%;
+    height: 100%; }
 
 .game-info {
   margin-left: 20px; }
@@ -44,17 +49,44 @@ nav {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin: 20px; }
-  .players label {
-    margin-top: 10px; }
+  margin: 10px; }
+  .players h1 {
+    font-style: italic;
+    font-weight: 900;
+    font-family: cursive; }
+  .players .player-name {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px; }
+    .players .player-name label {
+      font-weight: 900; }
   .players input {
     padding: 5px; }
+  .players .alert-text {
+    color: white;
+    background-color: #e77878;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px; }
+  .players .rounds-container {
+    display: flex;
+    align-items: center; }
+    .players .rounds-container input {
+      margin-left: 10px; }
+    .players .rounds-container label {
+      margin: 4px; }
 
 .board-container {
+  height: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: center; }
+  justify-content: space-around; }
 
 .status {
   text-align: center; }
@@ -69,7 +101,7 @@ nav {
   background-color: #905ce4;
   margin: 20px;
   width: 80%;
-  height: 80px;
+  height: 60px;
   color: white;
   font-size: 24px; }
 
@@ -88,13 +120,13 @@ nav {
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 70px;
+  height: 60px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 70px; }
+  width: 60px; }
 
 .square:focus {
   outline: none;
-  background: #ddd; }
+  background: #f2f2f2; }

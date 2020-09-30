@@ -1,13 +1,28 @@
 import React, { useState } from "react";
 import Square from "./Square";
+import swal from "sweetalert";
+// import swalR from "@sweetalert/with-react";
 
 const Board = () => {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
-  const [players, setPlayers] = useState({
-    player1 : '',
-    player2:''
-  })
+  const [player1, setPlayer1] = useState("");
+  const [player2, setPlayer2] = useState("");
+  // const [players, setPlayers] = useState({
+  //   player1: "",
+  //   player2: ""
+  // });
+  // const [rounds, setRounds] = useState(3);
+
+  const restart = () => {
+    let allSquares = document.querySelectorAll('.square')
+    allSquares.forEach(element=>{
+      element.style.background = '#fff'
+      element.style.color = 'black'
+
+    })
+    setSquares(Array(9).fill(null));
+  };
 
   const calculateWinner = squares => {
     const lines = [
@@ -27,13 +42,27 @@ const Board = () => {
         squares[a] === squares[b] &&
         squares[a] === squares[c]
       ) {
-        return squares[a] === 'X' ? players.player1 : players.player2
+        let allSquares = document.querySelectorAll('.square')
+        let winSquares = [allSquares[a],allSquares[b],allSquares[c]]
+        winSquares.forEach((element)=>{
+          element.style.background = '#f2f2f2'
+          element.style.color = '#288334'
+        })
+        return squares[a] === "X" ? player1 : player2;
       }
     }
     return null;
   };
 
   const handleClick = i => {
+    if (!player1 || !player2) {
+      swal({
+        title: "Error",
+        text: "Por favor escriba los nombres antes de empezar",
+        icon: "error"
+      });
+      return;
+    }
     const squaresNew = squares.slice();
     if (calculateWinner(squaresNew) || squaresNew[i]) {
       return;
@@ -50,33 +79,53 @@ const Board = () => {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
+    swal({
+      title: winner,
+      text: "Ha ganado esta partida",
+      icon: "success",
+      buttons: {
+        cancel: 'Ver tablero',
+        comfirm:"Revancha!!"
+      }
+    }).then(value => {
+      if(value) restart() 
+    });
     status = "El ganador es : " + winner;
   } else {
-    status = "Siguiente: " + (xIsNext ? players.player1 : players.player2);
+    status = "El siguiente en jugar es: " + (xIsNext ? player1 : player2);
   }
-  const handleInputChange = (e) => {
-    setPlayers({
-      ...players,
-      [e.target.name]: e.target.value
+  // const handleRadioChange = e => {
+  //   setRounds(e.target.value);
+  // };
+
+  const getName = num => {
+    swal({
+      title: "Escriba el nombre del Jugador " + num,
+      content: "input"
+    }).then(name => {
+      num === 1 ? setPlayer1(name) : setPlayer2(name);
     });
-  }
- const restart = () => {
-   setSquares(Array(9).fill(null))
-   console.log('hola')
- }
+  };
 
   return (
     <div className="board-container">
       <div className="players">
-        <h3>Escriba los nombres de los jugadores</h3>
-        <label>Jugador 1:</label>
-        <input type="text" onChange={handleInputChange} name='player1' placeholder="Nombre"/>
-        <label>Jugador 2:</label>
-        <input type="text" onChange={handleInputChange} name='player2' placeholder="Nombre"/>
+        <h1>TRIQUI!!</h1>
+        <div className="player-name">
+          <label>Jugador 1:</label>
+          <p>&nbsp; {player1} &nbsp;</p>
+          <i onClick={() => getName(1)} className="far fa-edit"></i>
+        </div>
+        {/* <input type="text" onChange={handleInputChange} name='player1' placeholder="Nombre"/> */}
+        <div className="player-name">
+          <label>Jugador 2:</label>
+          <p>&nbsp; {player2} &nbsp;</p>
+          <i onClick={() => getName(2)} className="far fa-edit"></i>
+        </div>
+        {/* <input type="text" onChange={handleInputChange} name='player2' placeholder="Nombre"/> */}
       </div>
       <div className="status">{status}</div>
       <div className="board">
-        
         <div className="board-row">
           {renderSquare(0)}
           {renderSquare(1)}
@@ -93,7 +142,9 @@ const Board = () => {
           {renderSquare(8)}
         </div>
       </div>
-      <button className="btn-restart" onClick={restart}>Reiniciar!!</button>
+      <button className="btn-restart" onClick={restart}>
+        Reiniciar!!
+      </button>
     </div>
   );
 };
